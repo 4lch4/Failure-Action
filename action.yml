@@ -1,0 +1,10 @@
+name: "4lch4's Failure Action Test"
+description: An action for testing failures w/ the Core library.
+author: "4lch4"
+branding:
+  icon: 'heart'
+  color: 'green'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
