@@ -26476,7 +26476,7 @@ class SubFile {
         }
         catch (error) {
             core.error('[SubFile#test]: A default error message.');
-            const subFilePath = core.toPlatformPath((0,external_path_.join)(SubFile_dirname, 'SubFile.ts'));
+            const subFilePath = core.toPlatformPath((0,external_path_.join)(SubFile_dirname, '..', 'src', 'SubFile.ts'));
             core.info(`[SubFile#test]: The source file is located at: ${subFilePath}`);
             core.error('[SubFile#test]: An error w/ extra options.', {
                 file: subFilePath,
@@ -26506,7 +26506,7 @@ const src_dirname = (0,external_path_.dirname)((0,external_url_.fileURLToPath)(i
 async function run() {
     const subfile = new SubFile();
     core.info('[index#run]: Running the test function in the SubFile class.');
-    const srcFile = core.toPlatformPath((0,external_path_.join)(src_dirname, 'index.ts'));
+    const srcFile = core.toPlatformPath((0,external_path_.join)(src_dirname, '..', 'src', 'index.ts'));
     core.info(`[index#run]: The source file is located at: ${srcFile}`);
     core.warning('This is a warning message', {
         file: srcFile,
