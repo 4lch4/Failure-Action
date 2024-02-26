@@ -10,7 +10,7 @@ async function run() {
 
   core.info('[index#run]: Running the test function in the SubFile class.')
 
-  const srcFile = core.toPlatformPath(join(__dirname, 'index.ts'))
+  const srcFile = core.toPlatformPath(join(__dirname, '..', 'src', 'index.ts'))
 
   core.info(`[index#run]: The source file is located at: ${srcFile}`)
 

@@ -17,7 +17,7 @@ export class SubFile {
     } catch (error) {
       core.error('[SubFile#test]: A default error message.')
 
-      const subFilePath = core.toPlatformPath(join(__dirname, 'SubFile.ts'))
+      const subFilePath = core.toPlatformPath(join(__dirname, '..', 'src', 'SubFile.ts'))
 
       core.info(`[SubFile#test]: The source file is located at: ${subFilePath}`)
 
