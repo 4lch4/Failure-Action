@@ -1,4 +1,8 @@
 import * as core from '@actions/core'
+import { dirname, join } from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 /**
  * This is a utility class that is for testing how the `core` library manages failures and error
@@ -12,11 +16,18 @@ export class SubFile {
       throw new Error('A default error message.')
     } catch (error) {
       core.error('[SubFile#test]: A default error message.')
+
+      const subFilePath = core.toPlatformPath(join(__dirname, 'SubFile.ts'))
+
+      core.info(`[SubFile#test]: The source file is located at: ${subFilePath}`)
+
       core.error('[SubFile#test]: An error w/ extra options.', {
-        file: '/src/SubFile.ts',
+        file: subFilePath,
         title: 'A customized error message.',
-        startLine: 10,
-        endLine: 10,
+        // The following line & column numbers should highlight the `core.info` line in the try
+        // statement above.
+        startLine: 14,
+        endLine: 14,
         startColumn: 7,
         endColumn: 61,
       })

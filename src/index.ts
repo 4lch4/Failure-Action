@@ -1,16 +1,24 @@
 import * as core from '@actions/core'
+import { dirname, join } from 'path'
+import { fileURLToPath } from 'url'
 import { SubFile } from './SubFile.js'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 async function run() {
   const subfile = new SubFile()
 
   core.info('[index#run]: Running the test function in the SubFile class.')
 
-  core.warning('This is a warning message.', {
-    file: '/src/index.ts',
-    title: 'A customized warning message.',
-    startLine: 5,
-    endLine: 16,
+  const srcFile = core.toPlatformPath(join(__dirname, 'index.ts'))
+
+  core.info(`[index#run]: The source file is located at: ${srcFile}`)
+
+  core.warning('This is a warning message', {
+    file: srcFile,
+    title: 'A customized warning message',
+    startLine: 9,
+    endLine: 25,
   })
 
   return subfile.test()
