@@ -4,6 +4,15 @@ import { SubFile } from './SubFile.js'
 async function run() {
   const subfile = new SubFile()
 
+  core.info('[index#run]: Running the test function in the SubFile class.')
+
+  core.warning('This is a warning message.', {
+    file: '/src/index.ts',
+    title: 'A customized warning message.',
+    startLine: 5,
+    endLine: 16,
+  })
+
   return subfile.test()
 }
 
