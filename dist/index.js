@@ -26455,8 +26455,15 @@ var __webpack_exports__ = {};
 
 // EXTERNAL MODULE: ./node_modules/@actions/core/lib/core.js
 var core = __nccwpck_require__(2186);
+// EXTERNAL MODULE: external "path"
+var external_path_ = __nccwpck_require__(1017);
+// EXTERNAL MODULE: external "url"
+var external_url_ = __nccwpck_require__(7310);
 ;// CONCATENATED MODULE: ./src/SubFile.ts
 
+
+
+const SubFile_dirname = (0,external_path_.dirname)((0,external_url_.fileURLToPath)(import.meta.url));
 /**
  * This is a utility class that is for testing how the `core` library manages failures and error
  * messages by default.
@@ -26469,11 +26476,15 @@ class SubFile {
         }
         catch (error) {
             core.error('[SubFile#test]: A default error message.');
+            const subFilePath = core.toPlatformPath((0,external_path_.join)(SubFile_dirname, 'SubFile.ts'));
+            core.info(`[SubFile#test]: The source file is located at: ${subFilePath}`);
             core.error('[SubFile#test]: An error w/ extra options.', {
-                file: '/src/SubFile.ts',
+                file: subFilePath,
                 title: 'A customized error message.',
-                startLine: 10,
-                endLine: 10,
+                // The following line & column numbers should highlight the `core.info` line in the try
+                // statement above.
+                startLine: 14,
+                endLine: 14,
                 startColumn: 7,
                 endColumn: 61,
             });
@@ -26489,14 +26500,19 @@ class SubFile {
 ;// CONCATENATED MODULE: ./src/index.ts
 
 
+
+
+const src_dirname = (0,external_path_.dirname)((0,external_url_.fileURLToPath)(import.meta.url));
 async function run() {
     const subfile = new SubFile();
     core.info('[index#run]: Running the test function in the SubFile class.');
-    core.warning('This is a warning message.', {
-        file: '/src/index.ts',
-        title: 'A customized warning message.',
-        startLine: 5,
-        endLine: 16,
+    const srcFile = core.toPlatformPath((0,external_path_.join)(src_dirname, 'index.ts'));
+    core.info(`[index#run]: The source file is located at: ${srcFile}`);
+    core.warning('This is a warning message', {
+        file: srcFile,
+        title: 'A customized warning message',
+        startLine: 9,
+        endLine: 25,
     });
     return subfile.test();
 }
