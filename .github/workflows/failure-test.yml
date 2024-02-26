@@ -13,6 +13,3 @@ jobs:
 
       - name: Run Failure Action
         uses: ./
-        with:
-          failure: true
-
